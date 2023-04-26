@@ -12,6 +12,7 @@ struct HomeView: View {
     @Namespace var animation
     
     var body: some View {
+        
         ScrollView(.vertical, showsIndicators: false) {
             
             // MARK: Lazy Stack With Pinned Header
@@ -74,34 +75,19 @@ struct HomeView: View {
             }
         }
         .ignoresSafeArea(.container, edges: .top)
+        
     }
     
     // MARK: Tasks View
     func TasksView() -> some View {
         LazyVStack(spacing: 20) {
-            if let tasks = taskViewModel.filteredTasks {
-                if tasks.isEmpty {
-                    Text("No tasks found!")
-                        .font(.system(size: 16))
-                        .fontWeight(.light)
-                        .offset(y: 100)
-                } else {
-                    ForEach(tasks) { task in
-                        TaskCardView(task: task)
-                    }
-                }
-            } else {
-                // MARK: Progress View
-                ProgressView()
-                    .offset(y: 100)
+            // Converting object as Our Task Model
+            DynamicFilteredView(dataToFilter: taskViewModel.currentDay) { (object: Task) in
+                TaskCardView(task: object)
             }
         }
         .padding()
         .padding(.top)
-        // MARK: Updating Tasks
-        .onChange(of: taskViewModel.currentDay) { newValue in
-            taskViewModel.filterTodayTasks()
-        }
     }
     
     // MARK: Task Card View
@@ -109,14 +95,14 @@ struct HomeView: View {
         HStack(alignment: .top, spacing: 30) {
             VStack(spacing: 10) {
                 Circle()
-                    .fill(taskViewModel.isCurrentHour(date: task.taskDate) ? .black : .clear)
+                    .fill(taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) ? .black : .clear)
                     .frame(width: 15, height: 15)
                     .background(
                         Circle()
                             .stroke(.black, lineWidth: 1)
                             .padding(-3)
                     )
-                    .scaleEffect(!taskViewModel.isCurrentHour(date: task.taskDate) ? 0.8 : 1)
+                    .scaleEffect(!taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0.8 : 1)
                 
                 Rectangle()
                     .fill(.black)
@@ -126,18 +112,18 @@ struct HomeView: View {
             VStack {
                 HStack(alignment: .top, spacing: 10) {
                     VStack(alignment: .leading, spacing: 12) {
-                        Text(task.taskTitle)
+                        Text(task.taskTitle ?? "")
                             .font(.title2.bold())
                         
-                        Text(task.taskDescription)
+                        Text(task.taskDescription ?? "")
                             .font(.callout)
                     }
                     .hLeading()
                     
-                    Text(task.taskDate.formatted(date: .omitted, time: .shortened))
+                    Text(task.taskDate?.formatted(date: .omitted, time: .shortened) ?? "")
                 }
                 
-                if taskViewModel.isCurrentHour(date: task.taskDate) {
+                if taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) {
                     // MARK: Team Members
                     HStack(spacing: 0) {
                         HStack(spacing: -10) {
@@ -171,14 +157,14 @@ struct HomeView: View {
                 }
                 
             }
-            .foregroundColor(taskViewModel.isCurrentHour(date: task.taskDate) ? .white : .black)
-            .padding(taskViewModel.isCurrentHour(date: task.taskDate) ? 15 : 0)
-            .padding(.bottom, taskViewModel.isCurrentHour(date: task.taskDate) ? 0 : 10)
+            .foregroundColor(taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) ? .white : .black)
+            .padding(taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) ? 15 : 0)
+            .padding(.bottom, taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0 : 10)
             .hLeading()
             .background(
                 Color("Black")
                 .cornerRadius(25)
-                .opacity(taskViewModel.isCurrentHour(date: task.taskDate) ? 1 : 0)
+                .opacity(taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) ? 1 : 0)
             )
             
             
