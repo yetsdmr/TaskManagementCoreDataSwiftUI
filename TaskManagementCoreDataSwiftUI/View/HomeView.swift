@@ -11,6 +11,11 @@ struct HomeView: View {
     @StateObject var taskViewModel: TaskViewModel = TaskViewModel()
     @Namespace var animation
     
+    // MARK: Core Data Context
+    @Environment(\.managedObjectContext) var context
+    // MARK: Edit Button Context
+    @Environment(\.editMode) var editButton
+    
     var body: some View {
         
         ScrollView(.vertical, showsIndicators: false) {
@@ -75,7 +80,26 @@ struct HomeView: View {
             }
         }
         .ignoresSafeArea(.container, edges: .top)
-        
+        // MARK: Add Button
+        .overlay(
+            Button {
+                taskViewModel.addNewTask.toggle()
+            } label: {
+                Image(systemName: "plus")
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.black, in: Circle())
+            }
+                .padding()
+            ,alignment: .bottomTrailing
+        )
+        .sheet(isPresented: $taskViewModel.addNewTask) {
+            // Clearing Edit Data
+            taskViewModel.editTask = nil
+        } content: {
+            NewTaskView()
+                .environmentObject(taskViewModel)
+        }
     }
     
     // MARK: Tasks View
@@ -92,21 +116,54 @@ struct HomeView: View {
     
     // MARK: Task Card View
     func TaskCardView(task: Task) -> some View {
-        HStack(alignment: .top, spacing: 30) {
-            VStack(spacing: 10) {
-                Circle()
-                    .fill(taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) ? .black : .clear)
-                    .frame(width: 15, height: 15)
-                    .background(
-                        Circle()
-                            .stroke(.black, lineWidth: 1)
-                            .padding(-3)
-                    )
-                    .scaleEffect(!taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0.8 : 1)
-                
-                Rectangle()
-                    .fill(.black)
-                    .frame(width: 3)
+        HStack(alignment: editButton?.wrappedValue == .active ? .center : .top, spacing: 30) {
+            
+            // If Edit mode enabled then showing Delete Button
+            if editButton?.wrappedValue == .active {
+                // Edit Button for Current and Future Tasks
+                VStack(spacing: 10) {
+                    if task.taskDate?.compare(Date()) == .orderedDescending || Calendar.current.isDateInToday(task.taskDate ?? Date()) {
+                        
+                        Button {
+                            taskViewModel.editTask = task
+                            taskViewModel.addNewTask.toggle()
+                        } label: {
+                            Image(systemName: "pencil.circle.fill")
+                                .font(.title2)
+                                .foregroundColor(.primary)
+                        }
+                    }
+                    
+                    Button {
+                        // MARK: Deleting Task
+                        context.delete(task)
+                        
+                        //Saving
+                        try? context.save()
+                    } label: {
+                        Image(systemName: "minus.circle.fill")
+                            .font(.title2)
+                            .foregroundColor(.red)
+                    }
+                    
+                }
+
+            } else {
+                VStack(spacing: 10) {
+                    Circle()
+                        .fill(taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) ? (task.isCompleted ? .green : .black) : .clear)
+                        .frame(width: 15, height: 15)
+                        .background(
+                            Circle()
+                                .stroke(.black, lineWidth: 1)
+                                .padding(-3)
+                        )
+                        .scaleEffect(!taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) ? 0.8 : 1)
+                    
+                    Rectangle()
+                        .fill(.black)
+                        .frame(width: 3)
+                }
             }
             
             VStack {
@@ -125,32 +182,29 @@ struct HomeView: View {
                 
                 if taskViewModel.isCurrentHour(date: task.taskDate ?? Date()) {
                     // MARK: Team Members
-                    HStack(spacing: 0) {
-                        HStack(spacing: -10) {
-                            ForEach(["User1", "User2", "User3"], id: \.self) { user in
-                                Image(user)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 45, height: 45)
-                                    .clipShape(Circle())
-                                    .background(
-                                        Circle()
-                                            .stroke(.black, lineWidth: 5)
-                                    )
-                            }
-                            
-                        }
-                        .hLeading()
+                    HStack(spacing: 12) {
                         
-                        // MARK: Check Button
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "checkmark")
-                                .foregroundStyle(.black)
-                                .padding(10)
-                                .background(Color.white, in: RoundedRectangle(cornerRadius: 10))
+                        
+                        if !task.isCompleted {
+                            // MARK: Check Button
+                            Button {
+                                // MARK: Updating Task
+                                task.isCompleted = true
+                                
+                                // Saving
+                                try? context.save()
+                            } label: {
+                                Image(systemName: "checkmark")
+                                    .foregroundStyle(.black)
+                                    .padding(10)
+                                    .background(Color.white, in: RoundedRectangle(cornerRadius: 10))
+                            }
                         }
+                    
+                        Text(task.isCompleted ? "Marked as Completed" : "Mark Task as Completed")
+                            .font(.system(size: task.isCompleted ? 14 : 16, weight: .light))
+                            .foregroundColor(task.isCompleted ? .gray : .white)
+                            .hLeading()
 
                     }
                     .padding(.top)
@@ -183,15 +237,8 @@ struct HomeView: View {
             }
             .hLeading()
             
-            Button {
-                
-            } label: {
-                Image("Profile")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 45, height: 45)
-                    .clipShape(Circle())
-            }
+           // MARK: Edit Button
+            EditButton()
 
         }
         .padding()

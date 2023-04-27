@@ -3,4 +3,102 @@
    uuid = "3B4584D5-6AE0-4A4B-988A-02CDA76B926C"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7EF2FD44-5851-4C6D-92EF-BAB99A2D2325"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaskManagementCoreDataSwiftUI/View/HomeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "TasksView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3F3453EA-03F8-4F44-930A-A0908C88059F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaskManagementCoreDataSwiftUI/View/DynamicFilteredView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5475D526-27C8-46F7-9167-BCAC2AF30711"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaskManagementCoreDataSwiftUI/View/DynamicFilteredView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "5475D526-27C8-46F7-9167-BCAC2AF30711 - 72a46ad3da808e19"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.offset(x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, SwiftUI.ForEach&lt;SwiftUI.FetchedResults&lt;&#x3c4;_0_1&gt;, __C.NSManagedObjectID, &#x3c4;_0_0&gt;&gt; in TaskManagementCoreDataSwiftUI.DynamicFilteredView.body.getter : some"
+                  moduleName = "TaskManagementCoreDataSwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tsdmr/Desktop/Swift%20Projects/TaskManagementCoreDataSwiftUI/TaskManagementCoreDataSwiftUI/View/DynamicFilteredView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "1980">
+               </Location>
+               <Location
+                  uuid = "5475D526-27C8-46F7-9167-BCAC2AF30711 - e3c363d2aa7bea8a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (&#x3c4;_0_1) -&gt; &#x3c4;_0_0 in closure #1 () -&gt; SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.offset(x: CoreGraphics.CGFloat, y: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0, SwiftUI.ForEach&lt;SwiftUI.FetchedResults&lt;&#x3c4;_0_1&gt;, __C.NSManagedObjectID, &#x3c4;_0_0&gt;&gt; in TaskManagementCoreDataSwiftUI.DynamicFilteredView.body.getter : some"
+                  moduleName = "TaskManagementCoreDataSwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tsdmr/Desktop/Swift%20Projects/TaskManagementCoreDataSwiftUI/TaskManagementCoreDataSwiftUI/View/DynamicFilteredView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "168">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2F47042A-A830-4FEB-B757-B013EF4CFF22"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TaskManagementCoreDataSwiftUI/View/NewTaskView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

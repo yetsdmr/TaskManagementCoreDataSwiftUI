@@ -18,6 +18,12 @@ class TaskViewModel: ObservableObject {
     // MARK: Filtering Today Task
     @Published var filteredTasks: [Task]?
     
+    // MARK: New Task View
+    @Published var addNewTask: Bool = false
+    
+    // MARK: Edit Data
+    @Published var editTask: Task?
+    
     
     // MARK: Intializing
     init() {
@@ -66,6 +72,8 @@ class TaskViewModel: ObservableObject {
         let hour = calender.component(.hour, from: date)
         let currentHour = calender.component(.hour, from: Date())
         
-        return hour == currentHour
+        let isToday = calender.isDateInToday(date)
+        
+        return (hour == currentHour && isToday)
     }
 }

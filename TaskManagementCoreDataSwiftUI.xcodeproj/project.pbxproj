@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AC585B829F97616005520F9 /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC585B729F97616005520F9 /* NewTaskView.swift */; };
 		4ADE57CC29EF30C400CF9DE0 /* TaskManagementCoreDataSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE57CB29EF30C400CF9DE0 /* TaskManagementCoreDataSwiftUIApp.swift */; };
 		4ADE57CE29EF30C400CF9DE0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE57CD29EF30C400CF9DE0 /* Persistence.swift */; };
 		4ADE57D129EF30C400CF9DE0 /* TaskManagementCoreDataSwiftUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE57CF29EF30C400CF9DE0 /* TaskManagementCoreDataSwiftUI.xcdatamodeld */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4AC585B729F97616005520F9 /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
 		4ADE57C829EF30C400CF9DE0 /* TaskManagementCoreDataSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskManagementCoreDataSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ADE57CB29EF30C400CF9DE0 /* TaskManagementCoreDataSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagementCoreDataSwiftUIApp.swift; sourceTree = "<group>"; };
 		4ADE57CD29EF30C400CF9DE0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			children = (
 				4ADE580229F1143200CF9DE0 /* HomeView.swift */,
 				4ADE580429F95B3C00CF9DE0 /* DynamicFilteredView.swift */,
+				4AC585B729F97616005520F9 /* NewTaskView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				4ADE580529F95B3C00CF9DE0 /* DynamicFilteredView.swift in Sources */,
 				4ADE580329F1143200CF9DE0 /* HomeView.swift in Sources */,
 				4ADE580129F1130000CF9DE0 /* TaskViewModel.swift in Sources */,
+				4AC585B829F97616005520F9 /* NewTaskView.swift in Sources */,
 				4ADE57D129EF30C400CF9DE0 /* TaskManagementCoreDataSwiftUI.xcdatamodeld in Sources */,
 				4ADE57D329EF30C400CF9DE0 /* ContentView.swift in Sources */,
 				4ADE57CE29EF30C400CF9DE0 /* Persistence.swift in Sources */,
